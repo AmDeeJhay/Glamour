@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+.auth-content {
+    --background: #f5ede0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Full page ── */
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    background: #f5ede0;
+}
+
+/* ── Header with vertical stripe columns ── */
+.auth-header {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 28px;
+    overflow: hidden;
+}
+
+/* Vertical columns — left to right: cream, tan, cream, dark-tan, cream, tan */
+.auth-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Each column is ~16.66% wide (6 columns) */
+    background: linear-gradient(90deg,
+        #f0e4d0 0%,    #f0e4d0 16.5%,
+        #d4a96a 16.5%, #d4a96a 33%,
+        #f0e4d0 33%,   #f0e4d0 49.5%,
+        #c49050 49.5%, #c49050 66%,
+        #f0e4d0 66%,   #f0e4d0 82.5%,
+        #d4a96a 82.5%, #d4a96a 100%
+    );
+    z-index: 0;
+}
+
+.auth-header-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.auth-logo {
+    width: 48px;
+    height: 48px;
+}
+
+.auth-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1008;
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+/* ── White card lifts over header ── */
+.auth-card {
+    flex: 1;
+    background: #faf6ef;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
+    padding: 28px 20px 48px;
+    margin-top: -4px;
+}
+
+/* ── Google button ── */
+.google-btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 30px;
+    border: 1.5px solid #ddd8d0;
+    background: #faf8f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.google-btn:active { background: #f0ede8; }
+
+/* ── OR ── */
+.auth-or {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    margin: 14px 0 18px;
+    letter-spacing: 0.8px;
+}
+
+/* ── Field group ── */
+.field-group {
+    margin-bottom: 12px;
+}
+
+.field-label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1008;
+    margin: 0 0 5px 2px;
+}
+
+.field-wrap {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #e2ddd6;
+    border-radius: 12px;
+    background: #faf8f5;
+    padding: 0 14px;
+    height: 50px;
+}
+
+.field-wrap ion-input {
+    flex: 1;
+    --color: #1a1a1a;
+    --placeholder-color: #c0bab2;
+    --placeholder-font-size: 14px;
+    --padding-start: 0;
+    --padding-end: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+}
+
+.eye-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+/* ── Forgot ── */
+.forgot-row {
+    display: flex;
+    justify-content: flex-end;
+    margin: 6px 0 0;
+}
+
+.forgot-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #bf8820;
+    cursor: pointer;
+}
+
+/* ── Submit ── */
+.auth-btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #bf8820 0%, #e0aa40 100%);
+    box-shadow: 0 6px 24px rgba(191,136,32,0.38);
+    margin-top: 28px;
+    transition: opacity 0.18s, transform 0.12s;
+}
+
+.auth-btn:active {
+    opacity: 0.88;
+    transform: scale(0.98);
+}
+
+/* ── Bottom link ── */
+.auth-footer {
+    text-align: center;
+    margin-top: 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #444;
+}
+
+.auth-footer-link {
+    color: #bf8820;
+    font-weight: 600;
+    cursor: pointer;
+}

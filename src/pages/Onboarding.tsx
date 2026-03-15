@@ -1,10 +1,10 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import {
     IonContent,
     IonPage
 } from '@ionic/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import { useHistory } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -13,8 +13,7 @@ import './Onboarding.css';
 const Onboarding: React.FC = () => {
     const history = useHistory();
     const swiperRef = useRef<any>(null);
-    const [autoplayEnabled, setAutoplayEnabled] = useState(true);
-    const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const [activeSlide, setActiveSlide] = useState(0);
 
     const notifications = [
         { id: 1, title: 'Activity Completed', message: 'You earned €2 for reviewing a lifestyle post.' },
@@ -22,14 +21,12 @@ const Onboarding: React.FC = () => {
         // { id: 3, title: 'Daily Bonus', subtitle: 'Login Streak', message: 'Keep your 7-day streak going!' }
     ];
 
-    const vibrate = () => {
-        if ('vibrate' in navigator) {
-            navigator.vibrate(50);
+    const handleContinue = () => {
+        if (activeSlide < 2) {
+            swiperRef.current?.slideNext();
+            return;
         }
-    };
-
-    const handleGetStarted = () => {
-        history.push('/auth/signin');
+        history.push('/auth/signup');
     };
 
     // Control each avatar independently with inline coordinates and sizes.
@@ -68,51 +65,15 @@ const Onboarding: React.FC = () => {
         },
     ];
 
-    // Handle user interaction - stop autoplay temporarily
-    const handleSlideChange = () => {
-        if (debounceTimerRef.current) {
-            clearTimeout(debounceTimerRef.current);
-        }
-
-        setAutoplayEnabled(false);
-
-        debounceTimerRef.current = setTimeout(() => {
-            setAutoplayEnabled(true);
-        }, 10000); // Resume autoplay after 10 seconds of inactivity
-    };
-
-    useEffect(() => {
-        return () => {
-            if (debounceTimerRef.current) {
-                clearTimeout(debounceTimerRef.current);
-            }
-        };
-    }, []);
-
     return (
         <IonPage>
             <IonContent fullscreen className="onboarding-content">
                 <Swiper
-                    modules={[Pagination, Autoplay]}
+                    modules={[Pagination]}
                     pagination={{ clickable: true }}
-                    autoplay={autoplayEnabled ? {
-                        delay: 4500,
-                        disableOnInteraction: false,
-                    } : false}
-                    speed={600}
-                    effect="slide"
-                    onSlideChange={handleSlideChange}
-                    onTouchStart={() => {
-                        setAutoplayEnabled(false);
-                        if (debounceTimerRef.current) {
-                            clearTimeout(debounceTimerRef.current);
-                        }
-                    }}
-                    onTouchEnd={() => {
-                        debounceTimerRef.current = setTimeout(() => {
-                            setAutoplayEnabled(true);
-                        }, 10000);
-                    }}
+                    speed={0}
+                    allowTouchMove={false}
+                    onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
                     onSwiper={(swiper) => (swiperRef.current = swiper)}
                     className="onboarding-swiper"
                 >
@@ -142,17 +103,29 @@ const Onboarding: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className="relative flex-start text-center flex-1 z-30 flex-col">
-                                <h2 className="text-[28px] text-[#1C2A36] font-[700]">Earn From<br />Your Daily Lifestyle</h2>
-                                <p className="text-[#1C2A36] font-[400] text-[14px] leading-[20px]">
+                            <div
+                                style={{
+                                    position: 'relative',
+                                    textAlign: 'center',
+                                    flex: 1,
+                                    zIndex: 30,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'flex-start'
+                                }}
+                            >
+                                <h2 style={{ fontSize: '28px', color: '#1C2A36', fontWeight: 700, margin: 0 }}>
+                                    Earn From<br />Your Daily Lifestyle
+                                </h2>
+                                <p style={{ color: '#1C2A36', fontWeight: 400, fontSize: '14px', lineHeight: '20px', marginTop: '10px' }}>
                                     Share your lifestyle, routines, meals,<br />
                                     and everyday moments and earn on Glamour.
                                 </p>
                             </div>
 
                             <div className="onboarding-bottom">
-                                <button className="get-started-btn" onClick={handleGetStarted}>
-                                    Get Started
+                                <button className="get-started-btn" onClick={handleContinue}>
+                                    Continue
                                 </button>
                             </div>
                         </div>
@@ -183,8 +156,6 @@ const Onboarding: React.FC = () => {
                                             {notifications.map((item, index) => (
                                                 <div
                                                     key={item.id}
-                                                    onMouseEnter={vibrate}
-                                                    onTouchStart={vibrate}
                                                     style={{
                                                         position: 'absolute',
                                                         width: '100%',
@@ -241,8 +212,8 @@ const Onboarding: React.FC = () => {
                             </div>
 
                             <div className="onboarding-bottom" style={{ position: 'relative', zIndex: 30 }}>
-                                <button className="get-started-btn" onClick={handleGetStarted}>
-                                    Get Started
+                                <button className="get-started-btn" onClick={handleContinue}>
+                                    Continue
                                 </button>
                             </div>
                         </div>
@@ -335,7 +306,7 @@ const Onboarding: React.FC = () => {
                             </div>
 
                             <div className="onboarding-bottom">
-                                <button className="get-started-btn" onClick={handleGetStarted}>Get Started</button>
+                                <button className="get-started-btn" onClick={handleContinue}>Continue</button>
                             </div>
                         </div>
                     </SwiperSlide>

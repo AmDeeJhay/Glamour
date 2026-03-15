@@ -214,7 +214,6 @@
 }
 
 */
-
 /* .phone-screen {
     width: 100%;
     aspect-ratio: 9 / 17;
@@ -306,7 +305,7 @@
 /* ══════════════════════════════════════════════
    SLIDE 3 — WALLET
    ══════════════════════════════════════════════ */
-.wallet-area {
+/* .wallet-area {
     flex: 1;
     width: 100%;
     padding: 32px 20px 0;
@@ -387,7 +386,7 @@
     font-weight: 500;
     color: #555;
     text-align: center;
-}
+} */
 
 /* ══════════════════════════════════════════════
    BOTTOM BAR — pagination + button
@@ -399,7 +398,7 @@
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    padding: 16px 24px 32px;
+    padding: 16px 24px calc(env(safe-area-inset-bottom) + 48px);
     width: 100%;
     position: relative;
     z-index: 2;
@@ -430,7 +429,7 @@
 
 .onboarding-swiper .swiper-pagination-bullet-active {
     width: 24px;
-    background: #bf8820;
+    background: #3F5F7A;
 }
 
 /* ── Get Started button ── */

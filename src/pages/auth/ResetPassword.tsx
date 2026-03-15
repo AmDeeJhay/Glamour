@@ -1,57 +1,96 @@
 import { useState } from 'react';
-import { IonContent, IonPage, IonInput, IonButton, IonIcon } from '@ionic/react';
-import { lockClosedOutline } from 'ionicons/icons';
+import { IonContent, IonPage, IonInput } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import './Auth.css';
+
+const EyeOff = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+        <line x1="1" y1="1" x2="23" y2="23" />
+    </svg>
+);
+
+const EyeOn = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
+    </svg>
+);
 
 const ResetPassword: React.FC = () => {
-  const history = useHistory();
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+    const history = useHistory();
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [showPw, setShowPw] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleReset = () => {
-    history.push('/auth/signin');
-  };
+    return (
+        <IonPage>
+            <IonContent fullscreen className="auth-content">
+                <div className="auth-page">
 
-  return (
-    <IonPage>
-      <IonContent fullscreen>
-        <div className="max-w-[400px] mx-auto px-8 py-16 h-full flex flex-col justify-center">
-          <div className="text-center mb-10">
-            <h1 className="text-[32px] font-bold mb-2.5 text-gray-900">Reset Password</h1>
-            <p className="text-base text-gray-500">Create a new password</p>
-          </div>
+                    {/* Header */}
+                    <div className="auth-header">
+                        <div className="auth-header-content">
+                            <img src="/Glamourlogo.svg" alt="Glamour" className="auth-logo" />
+                            <h1 className="auth-title">Reset Password</h1>
+                        </div>
+                    </div>
 
-          <div className="w-full">
-            <div className="relative mb-5 border border-gray-200 rounded-xl px-4 flex items-center bg-gray-50">
-              <IonIcon icon={lockClosedOutline} className="text-xl text-gray-500 mr-2.5" />
-              <IonInput
-                type="password"
-                placeholder="New Password"
-                value={password}
-                onIonInput={(e) => setPassword(e.detail.value!)}
-                className="text-base"
-              />
-            </div>
+                    {/* Card */}
+                    <div className="auth-card">
 
-            <div className="relative mb-5 border border-gray-200 rounded-xl px-4 flex items-center bg-gray-50">
-              <IonIcon icon={lockClosedOutline} className="text-xl text-gray-500 mr-2.5" />
-              <IonInput
-                type="password"
-                placeholder="Confirm New Password"
-                value={confirmPassword}
-                onIonInput={(e) => setConfirmPassword(e.detail.value!)}
-                className="text-base"
-              />
-            </div>
+                        <p style={{ fontSize: '14px', color: '#666', margin: '0 0 16px', fontFamily: 'DM Sans, sans-serif' }}>
+                            Create a new password for your account.
+                        </p>
 
-            <IonButton expand="block" onClick={handleReset} className="mt-5 mb-5 h-[50px] font-semibold" style={{ '--border-radius': '12px' }}>
-              Reset Password
-            </IonButton>
-          </div>
-        </div>
-      </IonContent>
-    </IonPage>
-  );
+                        {/* New Password */}
+                        <div className="field-group">
+                            <label className="field-label">New Password</label>
+                            <div className="field-wrap">
+                                <IonInput
+                                    type={showPw ? 'text' : 'password'}
+                                    placeholder="Enter New Password"
+                                    value={password}
+                                    onIonInput={(e) => setPassword(e.detail.value!)}
+                                />
+                                <button className="eye-btn" onClick={() => setShowPw(!showPw)}>
+                                    {showPw ? <EyeOn /> : <EyeOff />}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Confirm Password */}
+                        <div className="field-group">
+                            <label className="field-label">Confirm Password</label>
+                            <div className="field-wrap">
+                                <IonInput
+                                    type={showConfirm ? 'text' : 'password'}
+                                    placeholder="Re-enter New Password"
+                                    value={confirmPassword}
+                                    onIonInput={(e) => setConfirmPassword(e.detail.value!)}
+                                />
+                                <button className="eye-btn" onClick={() => setShowConfirm(!showConfirm)}>
+                                    {showConfirm ? <EyeOn /> : <EyeOff />}
+                                </button>
+                            </div>
+                        </div>
+
+                        <button className="auth-btn" onClick={() => history.push('/auth/signin')}>
+                            Reset Password
+                        </button>
+
+                        <p className="auth-footer">
+                            Remembered your password?{' '}
+                            <span className="auth-footer-link" onClick={() => history.push('/auth/signin')}>Log in</span>
+                        </p>
+
+                    </div>
+                </div>
+            </IonContent>
+        </IonPage>
+    );
 };
 
 export default ResetPassword;

@@ -6,7 +6,7 @@ const VerifyEmail: React.FC = () => {
   const history = useHistory();
 
   const handleContinue = () => {
-    history.push('/home');
+    history.push('/auth/promo');
   };
 
   const handleResend = () => {

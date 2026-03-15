@@ -1,58 +1,144 @@
 import { useState } from 'react';
-import { IonContent, IonPage, IonInput, IonButton, IonIcon, IonText } from '@ionic/react';
-import { mailOutline, arrowBackOutline } from 'ionicons/icons';
+import { IonContent, IonPage, IonInput } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 
 const ForgotPassword: React.FC = () => {
-  const history = useHistory();
-  const [email, setEmail] = useState('');
+    const history = useHistory();
+    const [email, setEmail] = useState('');
+    const [sent, setSent] = useState(false);
 
-  const handleSubmit = () => {
-    history.push('/auth/reset-password');
-  };
+    const handleConfirm = () => {
+        if (email) setSent(true);
+    };
 
-  return (
-    <IonPage>
-      <IonContent fullscreen>
-        <div className="max-w-[400px] mx-auto px-8 py-16 h-full flex flex-col justify-center">
-          <IonIcon 
-            icon={arrowBackOutline} 
-            className="text-[28px] cursor-pointer text-gray-900 mb-5" 
-            onClick={() => history.goBack()}
-          />
+    return (
+        <IonPage>
+            <IonContent fullscreen>
+                <div style={{
+                    minHeight: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#1a1a1a',
+                    padding: '64px 24px',
+                }}>
 
-          <div className="text-center mb-10">
-            <h1 className="text-[32px] font-bold mb-2.5 text-gray-900">Forgot Password</h1>
-            <p className="text-base text-gray-500">Enter your email to reset your password</p>
-          </div>
+                    {/* X button floats above card */}
+                    <button
+                        onClick={() => history.goBack()}
+                        style={{
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '50%',
+                            backgroundColor: 'white',
+                            border: 'none',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '-20px',
+                            position: 'relative',
+                            zIndex: 10,
+                            boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2.5" strokeLinecap="round">
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
 
-          <div className="w-full">
-            <div className="relative mb-5 border border-gray-200 rounded-xl px-4 flex items-center bg-gray-50">
-              <IonIcon icon={mailOutline} className="text-xl text-gray-500 mr-2.5" />
-              <IonInput
-                type="email"
-                placeholder="Email"
-                value={email}
-                onIonInput={(e) => setEmail(e.detail.value!)}
-                className="text-base"
-              />
-            </div>
+                    {/* Card */}
+                    <div style={{
+                        width: '100%',
+                        maxWidth: '340px',
+                        backgroundColor: '#faf6ef',
+                        borderRadius: '20px',
+                        padding: '40px 24px 32px',
+                    }}>
+                        <h2 style={{
+                            fontSize: '22px',
+                            fontWeight: 700,
+                            color: '#1a1008',
+                            margin: '0 0 8px',
+                        }}>
+                            Forgot Password?
+                        </h2>
+                        <p style={{
+                            fontSize: '14px',
+                            color: '#666',
+                            lineHeight: 1.5,
+                            margin: '0 0 24px',
+                        }}>
+                            An email verification Link will be sent to your email
+                        </p>
 
-            <IonButton expand="block" onClick={handleSubmit} className="mt-5 mb-5 h-[50px] font-semibold" style={{ '--border-radius': '12px' }}>
-              Send Reset Link
-            </IonButton>
+                        {/* Email input */}
+                        <div style={{
+                            border: '1.5px solid #e0dbd4',
+                            borderRadius: '12px',
+                            backgroundColor: '#faf8f5',
+                            padding: '0 14px',
+                            height: '50px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            marginBottom: '8px',
+                        }}>
+                            <IonInput
+                                type="email"
+                                placeholder="Enter Email"
+                                value={email}
+                                onIonInput={(e) => setEmail(e.detail.value!)}
+                                style={{
+                                    '--color': '#1a1a1a',
+                                    '--placeholder-color': '#bbb',
+                                    '--padding-start': '0',
+                                    '--padding-end': '0',
+                                    fontSize: '14px',
+                                    width: '100%',
+                                } as React.CSSProperties}
+                            />
+                        </div>
 
-            <div className="text-center mt-5">
-              <IonText className="text-sm text-gray-500">
-                Remember your password?{' '}
-                <span onClick={() => history.push('/auth/signin')} className="text-primary font-semibold cursor-pointer">Sign In</span>
-              </IonText>
-            </div>
-          </div>
-        </div>
-      </IonContent>
-    </IonPage>
-  );
+                        {/* Success message */}
+                        {sent && (
+                            <p style={{
+                                fontSize: '13px',
+                                fontWeight: 600,
+                                color: '#4caf50',
+                                margin: '4px 0 16px',
+                            }}>
+                                Link successfully sent
+                            </p>
+                        )}
+
+                        {/* Spacer */}
+                        {!sent && <div style={{ height: '24px' }} />}
+
+                        {/* Confirm button */}
+                        <button
+                            onClick={handleConfirm}
+                            style={{
+                                width: '100%',
+                                height: '50px',
+                                borderRadius: '30px',
+                                border: 'none',
+                                background: 'linear-gradient(135deg, #bf8820 0%, #e0aa40 100%)',
+                                color: 'white',
+                                fontSize: '15px',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                boxShadow: '0 6px 24px rgba(191,136,32,0.45)',
+                            }}
+                        >
+                            Confirm Email
+                        </button>
+                    </div>
+                </div>
+            </IonContent>
+        </IonPage>
+    );
 };
 
 export default ForgotPassword;

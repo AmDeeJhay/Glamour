@@ -42,6 +42,8 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Promo from './pages/auth/Promo';
+import Tabs from './Tabs';
 
 setupIonicReact({
   animated: true,
@@ -72,8 +74,17 @@ const App: React.FC = () => (
         <Route exact path="/auth/verify-email">
           <VerifyEmail />
         </Route>
+        <Route exact path="/auth/promo">
+          <Promo />
+        </Route>
+        <Route exact path="/auth/Promo">
+          <Promo />
+        </Route>
+        <Route path="/tabs">
+          <Tabs />
+        </Route>
         <Route exact path="/home">
-          <Home />
+          <Redirect to="/tabs/home" />
         </Route>
         <Route exact path="/">
           <Redirect to="/splash" />

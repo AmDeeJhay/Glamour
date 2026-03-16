@@ -64,11 +64,11 @@ const Home: React.FC = () => {
                             <img src="/Wireframe.svg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', }} />
 
                             <div style={{ position: 'relative', zIndex: 1, padding: '20px 22px 22px' }}>
-                                <p style={{ fontSize: 12, color: '#8a9ab5', margin: '0 0 8px', fontWeight: 500, fontFamily: 'Epilogue, sans-serif', letterSpacing: '0.2px' }}>
+                                <p style={{ fontSize: 14, color: '#C2C2C2', margin: '0 0 8px', fontWeight: 400, fontFamily: 'Epilogue, sans-serif', letterSpacing: '0.2px' }}>
                                     Available Balance
                                 </p>
                                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                    <span style={{ fontSize: 34, fontFamily: 'Epilogue, sans-serif', fontWeight: 700, color: 'white', letterSpacing: '-0.5px' }}>
+                                    <span style={{ fontSize: 29, fontFamily: 'Epilogue, sans-serif', fontWeight: 700, color: 'white', letterSpacing: '-0.5px' }}>
                                         ₦100,000
                                     </span>
                                     <button style={{
@@ -93,7 +93,7 @@ const Home: React.FC = () => {
                         <div style={{ marginBottom: 22 }}>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
                                 <span style={{ fontSize: 16, fontWeight: 700, fontFamily: 'Epilogue, sans-serif', color: '#1a1a2e' }}>Quick Earn</span>
-                                <span style={{ fontSize: 13, color: '#bf8820', fontFamily: 'Epilogue, sans-serif', fontWeight: 500 }}>See more</span>
+                                <span style={{ fontSize: 13, color: '#8F8F8F', fontFamily: 'Epilogue, sans-serif', fontWeight: 500 }}>See more</span>
                             </div>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, }}>
 
@@ -148,42 +148,47 @@ const Home: React.FC = () => {
                         {/* ── Today's Activities — stacked cards ── */}
                         <div style={{ marginBottom: 22 }}>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-                                <span style={{ fontSize: 16, fontFamily: 'Epilogue, sans-serif', fontWeight: 700, color: '#1a1a2e' }}>Today's Activities</span>
-                                <span style={{ fontSize: 13, fontFamily: 'Epilogue, sans-serif', color: '#bf8820', fontWeight: 500 }}>See more</span>
+                                <span style={{ fontSize: 15, fontFamily: 'Epilogue, sans-serif', fontWeight: 700, color: '#1C2A36' }}>Today's Activities</span>
+                                <span style={{ fontSize: 13, fontFamily: 'Epilogue, sans-serif', color: '#8F8F8F', fontWeight: 500 }}>See more</span>
                             </div>
 
-                            {/* Stacked cards container — cards overlap each other */}
-                            <div style={{ position: 'relative' }}>
+                            {/* Stacked cards container — cards stack with back cards peeking above */}
+                            <div style={{ position: 'relative', paddingTop: 16 }}>
 
-                                {/* Back card (visible peeking behind) */}
+                                {/* Back card (furthest behind, peeking at top) */}
                                 <div style={{
                                     position: 'absolute',
-                                    top: 0, left: 8, right: 8,
+                                    top: 5, left: 17, right: 12,
                                     height: 60,
-                                    background: 'white',
-                                    borderRadius: 16,
+                                    width: 'calc(100% - 34px)',
+                                    background: '#FAFAFA',
+                                    borderRadius: 19,
+                                    border: '1px solid #DBDBDB',
                                     boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
                                     zIndex: 1,
                                 }} />
 
-                                {/* Middle card (slightly peeking) */}
+                                {/* Middle card (slightly peeking above) */}
                                 <div style={{
                                     position: 'absolute',
-                                    top: 6, left: 4, right: 4,
+                                    top: 16, left: 10, right: 6,
                                     height: 60,
-                                    background: 'white',
-                                    borderRadius: 16,
+                                    width: 'calc(100% - 20px)',
+                                    background: '#FAFAFA',
+                                    borderRadius: 18,
+                                    border: '1px solid #DBDBDB',
                                     boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
                                     zIndex: 2,
                                 }} />
 
-                                {/* Front card — the actual content */}
+                                {/* Front card — the actual content (on top) */}
                                 <div style={{
                                     position: 'relative',
                                     zIndex: 3,
-                                    marginTop: 10,
-                                    background: 'white',
-                                    borderRadius: 16,
+                                    marginTop: 12,
+                                    background: '#FAFAFA',
+                                    borderRadius: 19,
+                                    border: '1px solid #DBDBDB',
                                     boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
                                     display: 'flex', alignItems: 'center', gap: 12,
                                     padding: '14px 16px',
@@ -194,7 +199,13 @@ const Home: React.FC = () => {
                                         background: '#fdf6e8', flexShrink: 0,
                                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     }}>
-
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#bf8820" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                            <polyline points="14 2 14 8 20 8"/>
+                                            <line x1="16" y1="13" x2="8" y2="13"/>
+                                            <line x1="16" y1="17" x2="8" y2="17"/>
+                                            <polyline points="10 9 9 9 8 9"/>
+                                        </svg>
                                     </div>
                                     <span style={{ flex: 1, fontSize: 14, fontFamily: 'Epilogue, sans-serif', fontWeight: 500, color: '#1a1a2e' }}>
                                         Review a Lifestyle Post
@@ -209,7 +220,7 @@ const Home: React.FC = () => {
                         {/* ── Explore Feed ── */}
                         <div style={{ marginBottom: 22 }}>
                             <div style={{ marginBottom: 12 }}>
-                                <span style={{ fontSize: 16, fontFamily: 'Epilogue, sans-serif', fontWeight: 700, color: '#1a1a2e' }}>Explore Feed</span>
+                                <span style={{ fontSize: 15, fontFamily: 'Epilogue, sans-serif', fontWeight: 700, color: '#1C2A36' }}>Explore Feed</span>
                             </div>
 
                             <div style={{
@@ -235,12 +246,12 @@ const Home: React.FC = () => {
                                                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                             />
                                         </div>
-                                        <span style={{ fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>Sandy James</span>
+                                        <span style={{ fontSize: 14, fontFamily: 'Epilogue, sans-serif', fontWeight: 500, color: '#1a1a2e' }}>Sandy James</span>
                                     </div>
                                     <span style={{
-                                        fontSize: 12, color: '#bf8820', fontWeight: 500,
-                                        background: '#fdf6e8', padding: '5px 12px',
-                                        borderRadius: 999, fontFamily: 'Epilogue, sans-serif', border: '1px solid #f0e0b8',
+                                        fontSize: 11, color: '#1C2A36', fontWeight: 400,
+                                        background: '#F5F5F5', padding: '5px 12px',
+                                        borderRadius: 999, fontFamily: 'Epilogue, sans-serif', border: '1px solid #DBDBDB',
                                     }}>
                                         Glam Lifestyle
                                     </span>

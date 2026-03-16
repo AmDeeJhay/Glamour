@@ -2,49 +2,14 @@ import { IonRouterOutlet, IonTabs } from '@ionic/react';
 import { Redirect, Route, useLocation, useHistory } from 'react-router-dom';
 import Home from './pages/Home';
 import Earn from './pages/Earn';
-import Community from './pages/Community';
+import Connect from './pages/Connect';
 import Profile from './pages/Profile';
-
-/* ── SVG icons ── */
-const HomeIcon = ({ active }: { active: boolean }) => (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
-        stroke={active ? 'white' : '#666'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z" />
-        <path d="M9 21V12h6v9" />
-    </svg>
-);
-
-const EarnIcon = ({ active }: { active: boolean }) => (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
-        stroke={active ? 'white' : '#666'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <ellipse cx="12" cy="6" rx="8" ry="3" />
-        <path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" />
-        <path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" />
-    </svg>
-);
-
-const CommunityIcon = ({ active }: { active: boolean }) => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
-        stroke={active ? 'white' : '#666'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="9" cy="7" r="3" />
-        <path d="M3 20c0-3.31 2.69-6 6-6s6 2.69 6 6" />
-        <circle cx="17" cy="7" r="2.5" />
-        <path d="M21 20c0-2.76-1.79-5.1-4.28-5.79" />
-    </svg>
-);
-
-const ProfileIcon = ({ active }: { active: boolean }) => (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
-        stroke={active ? 'white' : '#666'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="8" r="4" />
-        <circle cx="12" cy="12" r="10" />
-    </svg>
-);
+import { HomeIcon, EarnIcon, PeopleIcon, ProfileIcon } from './components/icons';
 
 const tabs = [
     { key: 'home',      path: '/tabs/home',      label: 'Home',      Icon: HomeIcon },
     { key: 'earn',      path: '/tabs/earn',       label: 'Earn',      Icon: EarnIcon },
-    { key: 'community', path: '/tabs/community',  label: 'Community', Icon: CommunityIcon },
+    { key: 'connect', path: '/tabs/connect',  label: 'Connect', Icon: PeopleIcon },
     { key: 'profile',   path: '/tabs/profile',    label: 'Profile',   Icon: ProfileIcon },
 ];
 
@@ -58,30 +23,32 @@ const CustomTabBar: React.FC = () => {
         <div style={{
             position: 'fixed',
             bottom: 0,
-            left: 0,
+            left: -16,
             right: 0,
             zIndex: 1000,
             display: 'flex',
             justifyContent: 'center',
-            padding: '0 16px calc(env(safe-area-inset-bottom) + 12px)',
+            padding: '0 16px calc(env(safe-area-inset-bottom) + 20px)',
             background: 'transparent',
             pointerEvents: 'none',
         }}>
-            {/* Pill container */}
+            {/* Pill container with glassmorphism */}
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
-                background: '#c8dff0',
+                gap: 6,
+                background: 'rgba(255, 255, 255, 0.25)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
                 borderRadius: 999,
-                padding: '6px 6px',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.5)',
+                padding: '6px',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.6)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
                 pointerEvents: 'all',
-                width: '100%',
-                maxWidth: 420,
             }}>
                 {tabs.map(({ key, path, label, Icon }) => {
                     const isActive = active === key;
+                    const iconColor = isActive ? 'white' : '#666';
                     return (
                         <button
                             key={key}
@@ -90,17 +57,17 @@ const CustomTabBar: React.FC = () => {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                gap: isActive ? 8 : 0,
+                                gap: isActive ? 6 : 0,
                                 flex: isActive ? '1 1 auto' : '0 0 auto',
-                                width: isActive ? 'auto' : 56,
-                                height: 56,
+                                width: isActive ? 'auto' : 48,
+                                height: 48,
                                 borderRadius: 999,
                                 border: 'none',
                                 cursor: 'pointer',
-                                padding: isActive ? '0 20px' : 0,
+                                padding: isActive ? '0 16px' : 0,
                                 background: isActive
                                     ? 'linear-gradient(135deg, #d4a030 0%, #c8922a 100%)'
-                                    : 'white',
+                                    : 'rgba(255, 255, 255, 0.8)',
                                 boxShadow: isActive
                                     ? '0 4px 16px rgba(200,146,42,0.40)'
                                     : '0 2px 8px rgba(0,0,0,0.08)',
@@ -108,12 +75,24 @@ const CustomTabBar: React.FC = () => {
                                 whiteSpace: 'nowrap',
                             }}
                         >
-                            <Icon active={isActive} />
+                            {key === 'earn' || key === 'connect' ? (
+                                <Icon 
+                                    width="22px" 
+                                    height="22px" 
+                                    fill={iconColor}
+                                />
+                            ) : (
+                                <Icon 
+                                    width="22px" 
+                                    height="22px" 
+                                    stroke={iconColor}
+                                />
+                            )}
                             {isActive && (
                                 <span style={{
                                     color: 'white',
                                     fontWeight: 700,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     letterSpacing: '0.1px',
                                 }}>
                                     {label}
@@ -134,7 +113,7 @@ const Tabs: React.FC = () => {
                 <IonRouterOutlet>
                     <Route exact path="/tabs/home" component={Home} />
                     <Route exact path="/tabs/earn" component={Earn} />
-                    <Route exact path="/tabs/community" component={Community} />
+                    <Route exact path="/tabs/connect" component={Connect} />
                     <Route exact path="/tabs/profile" component={Profile} />
                     <Route exact path="/tabs">
                         <Redirect to="/tabs/home" />

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const STORAGE_KEY = 'rpm-avatar-url';
-const FALLBACK_AVATAR = '/avatar-nini.png';
+const FALLBACK_AVATAR = 'https://api.dicebear.com/7.x/avataaars/svg?seed=Nini';
 
 const getCreatorUrl = () => {
     // Ready Player Me avatar creator (frameApi=true enables postMessage integration)
@@ -11,11 +11,11 @@ const getCreatorUrl = () => {
 const toImageUrl = (avatarUrl: string) => {
     if (!avatarUrl) return FALLBACK_AVATAR;
 
-    // Ready Player Me returns a .glb URL (for the 3D model). Convert to a preview PNG when possible.
+    // Ready Player Me returns a .glb URL (for the 3D model). Convert to a preview PNG.
     const match = avatarUrl.match(/avatars\/(.+?)\.glb/);
     if (match) {
         const id = match[1];
-        return `https://api.readyplayer.me/v1/avatars/${id}.png?width=256&height=256`;
+        return `https://models.readyplayer.me/${id}.png?scene=fullbody-portrait-v1&blendShapes[Wolf3D_Head][mouthSmile]=0.3`;
     }
 
     return avatarUrl;
@@ -66,42 +66,43 @@ const ReadyPlayerMeAvatar: React.FC<{ size?: number }> = ({ size = 44 }) => {
             type="button"
             onClick={openAvatarCreator}
             style={{
+                position: 'relative',
                 width: size,
                 height: size,
                 borderRadius: '50%',
                 border: '2px solid rgba(255,255,255,0.6)',
                 overflow: 'hidden',
                 padding: 0,
-                background: 'transparent',
+                background: '#f5f5f5',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
-            title="Edit avatar"
+            title="Click to create/edit avatar"
         >
             <img
-                src={imgUrl}
+                src={imgUrl || FALLBACK_AVATAR}
                 alt="Profile avatar"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 onError={(e) => {
                     (e.target as HTMLImageElement).src = FALLBACK_AVATAR;
                 }}
             />
-            {isPopupOpen ? (
+            {isPopupOpen && (
                 <span
                     style={{
                         position: 'absolute',
-                        bottom: -6,
-                        right: -6,
-                        width: 14,
-                        height: 14,
+                        bottom: -2,
+                        right: -2,
+                        width: 12,
+                        height: 12,
                         borderRadius: '50%',
                         background: '#4ade80',
                         border: '2px solid white',
                     }}
                 />
-            ) : null}
+            )}
         </button>
     );
 };

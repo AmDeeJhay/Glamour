@@ -9,7 +9,7 @@
 /* ── Swiper fills full screen ── */
 .onboarding-swiper {
     width: 100%;
-    height: 100dvh;
+    height: 100vh;
 }
 
 /* ── Each slide fills full height ── */
@@ -47,26 +47,72 @@
     left: 0;
     right: 0;
     height: 160px;
-    background: linear-gradient(to bottom, transparent 0%, rgba(250,246,239,0.5) 40%, #faf6ef 75%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(250, 246, 239, 0.5) 40%, #faf6ef 75%);
     pointer-events: none;
     z-index: 2;
 }
 
 /* LEFT column: 2 equal-height images, each spans 2 rows */
-.mosaic-left-top    { grid-column: 1; grid-row: 1 / 3; border-radius: 18px; overflow: hidden; background: #ddd; }
-.mosaic-left-bottom { grid-column: 1; grid-row: 3 / 5; border-radius: 18px; overflow: hidden; background: #ddd; }
+.mosaic-left-top {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.mosaic-left-bottom {
+    grid-column: 1;
+    grid-row: 3 / 5;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ddd;
+}
 
 /* MIDDLE column: cross (1 row) | portrait (2 rows) | gold rect (1 row) */
-.mosaic-mid-cross { grid-column: 2; grid-row: 1 / 2; background: transparent; display: flex; align-items: center; justify-content: center; }
-.mosaic-mid-img   { grid-column: 2; grid-row: 2 / 4; border-radius: 18px; overflow: hidden; background: #ddd; }
-.mosaic-mid-gold  { grid-column: 2; grid-row: 4 / 5; border-radius: 18px; background: linear-gradient(160deg, #bf8820 0%, #e8c060 100%); }
+.mosaic-mid-cross {
+    grid-column: 2;
+    grid-row: 1 / 2;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mosaic-mid-img {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.mosaic-mid-gold {
+    grid-column: 2;
+    grid-row: 4 / 5;
+    border-radius: 18px;
+    background: linear-gradient(160deg, #bf8820 0%, #e8c060 100%);
+}
 
 /* RIGHT column: tall image (3 rows) | short image (1 row) */
-.mosaic-right-top    { grid-column: 3; grid-row: 1 / 4; border-radius: 18px; overflow: hidden; background: #ddd; }
-.mosaic-right-bottom { grid-column: 3; grid-row: 4 / 5; border-radius: 18px; overflow: hidden; background: #ddd; }
+.mosaic-right-top {
+    grid-column: 3;
+    grid-row: 1 / 4;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.mosaic-right-bottom {
+    grid-column: 3;
+    grid-row: 4 / 5;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ddd;
+}
 
 /* All images fill their cell */
-.mosaic-grid > div img {
+.mosaic-grid>div img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -124,7 +170,7 @@
     left: 0;
     right: 0;
     height: 160px;
-    background: linear-gradient(to bottom, transparent 0%, rgba(250,246,239,0.5) 40%, #faf6ef 75%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(250, 246, 239, 0.5) 40%, #faf6ef 75%);
     pointer-events: none;
     z-index: 2;
 }
@@ -144,7 +190,7 @@
     width: 100%;
     position: relative;
     z-index: 2;
-    background: radial-gradient(ellipse 160% 90% at 50% 140%, #deb96a 0%, #eecf8a 18%, #f5e4bb 38%, transparent 65%);
+
 }
 
 /* ── Swiper built-in pagination — sits just above the button ── */
@@ -188,7 +234,7 @@
     font-weight: 700;
     letter-spacing: 0.3px;
     background: linear-gradient(135deg, #C88A2A 0%, #e8c060 100%);
-    box-shadow: 0 8px 24px rgba(200,138,42,0.40), 0 4px 12px rgba(200,138,42,0.25);
+    box-shadow: 0 8px 24px rgba(200, 138, 42, 0.40), 0 4px 12px rgba(200, 138, 42, 0.25);
     transition: opacity 0.2s, transform 0.15s;
 }
 

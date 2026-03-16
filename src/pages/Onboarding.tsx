@@ -107,11 +107,11 @@ const Onboarding: React.FC = () => {
                                 style={{
                                     position: 'relative',
                                     textAlign: 'center',
-                                    flex: 1,
                                     zIndex: 30,
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    justifyContent: 'flex-start'
+                                    justifyContent: 'flex-start',
+                                    paddingTop: '1rem'
                                 }}
                             >
                                 <h2 style={{ fontSize: '28px', color: '#1C2A36', fontWeight: 700, margin: 0 }}>
@@ -203,7 +203,7 @@ const Onboarding: React.FC = () => {
                             </div>
 
                             {/* Text */}
-                            <div style={{ position: 'relative', textAlign: 'center', marginTop: '16%', flex: 1, zIndex: 30, display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ position: 'relative', textAlign: 'center', marginTop: '16%', zIndex: 30, display: 'flex', flexDirection: 'column' }}>
                                 <h2 style={{ fontSize: '28px', color: '#1C2A36', fontWeight: 700 }}>Complete Simple<br />Activities</h2>
                                 <p style={{ color: '#1C2A36', fontWeight: 400, fontSize: '14px', lineHeight: '20px' }}>
                                     Create content, review posts, track fitness,<br />

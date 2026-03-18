@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useHistory } from 'react-router-dom';
 import 'swiper/css';
 import './Onboarding.css';
+import Button from '../components/Button';
 
 const TOTAL_SLIDES = 3;
 
@@ -27,9 +28,9 @@ const Onboarding: React.FC = () => {
 
     const avatars = [
         { src: '/chess-girl.png', position: { top: '10%', left: '10%' }, size: 54, dotPos: { top: 'calc(10% + 48px)', left: 'calc(10% + 20px)' } },
-        { src: '/dress-guy.png',  position: { top: '15%', left: '62%' }, size: 60, dotPos: { top: 'calc(15% + 56px)', left: 'calc(62% + 24px)' } },
-        { src: '/smile-guy.png',  position: { top: '50%', left: '5%'  }, size: 62, dotPos: { top: 'calc(50% + 56px)', left: 'calc(5%  + 24px)' } },
-        { src: '/benchlady.png',  position: { top: '48%', left: '80%' }, size: 54, dotPos: { top: 'calc(48% + 48px)', left: 'calc(80% + 20px)' } },
+        { src: '/dress-guy.png', position: { top: '15%', left: '62%' }, size: 60, dotPos: { top: 'calc(15% + 56px)', left: 'calc(62% + 24px)' } },
+        { src: '/smile-guy.png', position: { top: '50%', left: '5%' }, size: 62, dotPos: { top: 'calc(50% + 56px)', left: 'calc(5%  + 24px)' } },
+        { src: '/benchlady.png', position: { top: '48%', left: '80%' }, size: 54, dotPos: { top: 'calc(48% + 48px)', left: 'calc(80% + 20px)' } },
     ];
 
     /* Dots rendered as plain divs — reactive since activeSlide is in parent scope */
@@ -89,7 +90,9 @@ const Onboarding: React.FC = () => {
 
                             <div className="onboarding-bottom">
                                 <Dots />
-                                <button className="get-started-btn" onClick={handleContinue}>Continue</button>
+                                <Button className="onboarding-continue-btn" onClick={handleContinue}>
+                                    Continue
+                                </Button>
                             </div>
                         </div>
                     </SwiperSlide>
@@ -153,7 +156,9 @@ const Onboarding: React.FC = () => {
 
                             <div className="onboarding-bottom" style={{ position: 'relative', zIndex: 30 }}>
                                 <Dots />
-                                <button className="get-started-btn" onClick={handleContinue}>Continue</button>
+                                <Button className="onboarding-continue-btn" onClick={handleContinue}>
+                                    Continue
+                                </Button>
                             </div>
                         </div>
                     </SwiperSlide>
@@ -212,7 +217,9 @@ const Onboarding: React.FC = () => {
 
                             <div className="onboarding-bottom">
                                 <Dots />
-                                <button className="get-started-btn" onClick={handleContinue}>Continue</button>
+                                <Button className="onboarding-continue-btn" onClick={handleContinue}>
+                                    Continue
+                                </Button>
                             </div>
                         </div>
                     </SwiperSlide>

@@ -233,9 +233,37 @@
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.3px;
-    background: linear-gradient(135deg, #C88A2A 0%, #e8c060 100%);
+    background: linear-gradient(135deg, rgba(200, 138, 42, 0.75) 0%, rgba(232, 192, 96, 0.75) 100%);
     box-shadow: 0 8px 24px rgba(200, 138, 42, 0.40), 0 4px 12px rgba(200, 138, 42, 0.25);
     transition: opacity 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.get-started-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/button-glow.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.65;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.get-started-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    z-index: 0;
 }
 
 .get-started-btn:active {

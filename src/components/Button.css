@@ -1,0 +1,58 @@
+/* ── Custom Button ── */
+.custom-button {
+    width: 100%;
+    height: 54px;
+    border-radius: 20px;
+    border: linear-gradient(135deg, #C88A2A 0%,  #E2B774 100%);
+    cursor: pointer;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    background: linear-gradient(135deg, #D3912C 0%, #C88A2A 100%);
+    transition: opacity 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.custom-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/button-glow.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.custom-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.custom-button:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+}
+
+.custom-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── Onboarding Continue Button (70% width) ── */
+.onboarding-continue-btn {
+    width: 70% !important;
+}

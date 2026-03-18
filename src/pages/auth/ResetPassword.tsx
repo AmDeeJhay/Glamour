@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { IonContent, IonPage, IonInput } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
-import './Auth.css';
+import './auth.css';
+import Button from '../../components/Button';
 
 const EyeOff = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -77,9 +78,9 @@ const ResetPassword: React.FC = () => {
                             </div>
                         </div>
 
-                        <button className="auth-btn" onClick={() => history.push('/auth/signin')}>
+                        <Button onClick={() => history.push('/auth/signin')}>
                             Reset Password
-                        </button>
+                        </Button>
 
                         <p className="auth-footer">
                             Remembered your password?{' '}

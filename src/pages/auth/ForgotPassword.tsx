@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { IonContent, IonPage, IonInput } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import Button from '../../components/Button';
+import './auth.css';
 
 const ForgotPassword: React.FC = () => {
     const history = useHistory();
@@ -117,23 +119,10 @@ const ForgotPassword: React.FC = () => {
                         {!sent && <div style={{ height: '24px' }} />}
 
                         {/* Confirm button */}
-                        <button
-                            onClick={handleConfirm}
-                            style={{
-                                width: '100%',
-                                height: '50px',
-                                borderRadius: '30px',
-                                border: 'none',
-                                background: 'linear-gradient(135deg, #bf8820 0%, #e0aa40 100%)',
-                                color: 'white',
-                                fontSize: '15px',
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                boxShadow: '0 6px 24px rgba(191,136,32,0.45)',
-                            }}
-                        >
+                        <Button onClick={handleConfirm}>
                             Confirm Email
-                        </button>
+                        </Button>
+
                     </div>
                 </div>
             </IonContent>

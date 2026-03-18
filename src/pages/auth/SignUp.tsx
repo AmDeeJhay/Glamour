@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IonContent, IonPage, IonInput } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
-import './Auth.css';
+import './auth.css';
 import Button from '../../components/Button';
 
 const EyeOff = () => (
